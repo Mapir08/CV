@@ -1,0 +1,18 @@
+#loisir{
+  .row{
+    text-align: center;
+  }
+  .vignette{
+    padding-bottom: 30px;
+  }
+  img{
+    box-shadow: 5px 5px 10px black;
+    border-radius: 10px;
+    z-index: 1;
+    &:hover{
+      transform: scale(1.2);
+      opacity: 0.8;
+      transition: transform 300ms, opacity 300ms;
+    }
+  }
+}
