@@ -1,0 +1,44 @@
+#training{
+  ul{
+    margin-bottom: 20px;
+    li{
+      height: 70px;
+      overflow: hidden;
+      border: $fondblancColor 1px solid;
+      border-radius: 10px ;
+    }
+    .spaced{
+      height:20px;
+      border: none;
+    }
+  }
+  .training-heading{
+    background-color: $fondblancColorBis;
+    cursor: pointer;
+    padding-left: 20px;
+    font-size: 2rem;
+    height: 70px;
+    color: $primaryColor;
+    align-items: center;
+    &-name{
+      font-family: $secondFont;
+    }
+    &-tag{
+      text-align: center;
+    }
+  }
+  .training-description{
+    background-color: $fondblancColor;
+    align-items: center;
+    font-size: 1.5rem;
+    height: 120px;
+    color: $primaryColor;
+    padding: 20px 0 20px 0;
+    &-date{
+      color: rgba(30, 34, 50, 0.5) ;
+    }
+    .noDate{
+      text-align: center;
+    }
+  }
+}

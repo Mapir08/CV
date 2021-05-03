@@ -1,0 +1,53 @@
+*, .container-fluid, .row, .col-lg-6{
+  margin: 0;
+  padding: 0;
+}
+body{
+  font-family: $primaryFont, 'comic sans ms', cursive;
+  color: $secondColor;
+  background-image: url('../img/back.png');
+}
+h1,h2,h3,h4{
+  margin: 0;
+  padding: 0;
+}
+h1{
+  font-size: 5rem;
+}
+h2{
+  font-size: 3rem;
+}
+h1,h2{
+  font-family: $secondFont ;
+}
+img{
+  max-width: 100%;
+  height: auto;
+}
+ul{
+  list-style: none;
+}
+.bg-purple{
+  background-color: #8f4f8f;
+}
+.bg-blue{
+  background-color: #2196f3;
+}
+.bg{
+  background: $primaryColor ;
+}
+.background{
+  position: absolute;
+  height:100%;
+  width: 100%;
+  z-index: -1;
+}
+
+@media screen and (max-width :576px) {
+  h1{
+    font-size: 3.5rem;
+  }
+  h2{
+    font-size: 2rem;
+  }
+}

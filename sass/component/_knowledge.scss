@@ -1,0 +1,25 @@
+#knowledge{
+  .knowledge-caption, .progress, .progress-bar{
+    padding:0;
+  }
+  .col-lg-6{
+    padding-right: 20px;
+    padding-left: 20px;
+    .row{
+      padding-bottom: 20px;
+    }
+  }
+  .knowledge-caption{
+    font-size: 1.6rem;
+  }
+  .progress{
+    height:20px;
+    border-radius: 20px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .knowledge-caption{
+    padding-left: 25px !important;
+  }
+}

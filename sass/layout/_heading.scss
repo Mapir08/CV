@@ -1,0 +1,20 @@
+.heading{
+  padding: 50px 0 50px 50px;
+  align-items: baseline;
+  span{ // BI
+    float: left;
+    font-size: 2.3rem;
+    padding-right: 30px;
+    color: $tagColor;
+  }
+}
+
+@media screen and (max-width :576px) {
+  .heading{
+    padding: 30px 0 20px 20px;
+    span{ // BI
+      font-size: 1.5rem;
+      padding-right: 10px;
+    }
+  }
+}
