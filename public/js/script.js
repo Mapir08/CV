@@ -1,5 +1,7 @@
-$(function(){
-  let $trainingChoix = $('#training ul').children('li');
+$(function(){ // Pour les acction au chargement de la page
+
+  // Pour le développer dans la section training
+  let $trainingChoix = $('#diplome ul').children('li');
   let heightOpened = '190px';
   let heightClosed = '70px';
   let indexTraining = -1;
@@ -8,7 +10,6 @@ $(function(){
     choixTraining();
   };
 
-  // Pour le développer dans la section training
   let choixTraining = function(){
     $trainingChoix.children('.training-heading').click(function(){
       let newIndexTraining = $(this).parent().index();
@@ -43,4 +44,24 @@ $(function(){
 
   init();
 
+  // Effet déroulement lors du clik navbar
+  $('.navbar a').on('click', function(event){
+    event.preventDefault();
+    let hash = this.hash;
+    $('html').animate({scrollTop: $(hash).offset().top}, 400, function(){window.location.hash = hash;});
+  });
+
+  // Au scoll le menu descend
+  let $nav = $('.navbar');
+
+  $(window).on('scroll', function(event){
+    if(scrollY > 535){
+      $nav.addClass('fixed-top scroll');
+    }else{
+      $nav.removeClass('fixed-top scroll');
+    }
+    console.log(scrollY);
+  });
+
 });
+

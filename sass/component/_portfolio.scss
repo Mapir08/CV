@@ -1,8 +1,32 @@
 #portfolio{
-  &-carousel{
-    padding:0  30px 100px 30px;
+  .carousel{
+    padding:0  30px 30px;
     &-caption{
-      margin-top:50px;
+      position:relative !important;
+      right:0;
+      left:0;
+      padding-bottom:0;
+      padding-top: 50px;
+      p{
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
     }
+  }
+  .bi-chevron-compact-left, .bi-chevron-compact-right{
+    color: $tagColor;
+    font-size: 5rem;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .bi-chevron-compact-left, .bi-chevron-compact-right{
+    font-size: 2rem !important;
+  }
+  .bi-chevron-compact-left{
+    padding-left: 10px;
+  }
+  .bi-chevron-compact-right{
+    padding-right: 10px;
   }
 }

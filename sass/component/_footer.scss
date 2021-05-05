@@ -1,0 +1,13 @@
+footer{
+  text-align: center;
+  font-size: 1.2rem;
+  p{
+    padding-top:70px;
+    padding-bottom: 30px;
+    margin:0;
+    opacity: .6;
+  }
+}
+.bg-end{
+  background: linear-gradient(to top, $primaryColor 70%, rgba(0,0,0,0))
+}
