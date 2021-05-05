@@ -22,8 +22,16 @@
     }
     a{
       color: $secondColor;
+      &:hover{
+        transform: scale(1.1);
+        transition: transform 100ms;
+      }
     }
   }
+}
+.scroll{
+  background-color: $primaryColor;
+  box-shadow: inset 0 -5px 5px 0px rgba(0,0,0,0.6);
 }
 
 @media screen and (max-width: 768px){
