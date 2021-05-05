@@ -3,16 +3,35 @@
     text-align: center;
   }
   .vignette{
-    padding-bottom: 30px;
-  }
-  img{
-    box-shadow: 5px 5px 10px black;
-    border-radius: 10px;
-    z-index: 1;
+    margin: auto;
+    position: relative;
+    width: 200px;
+    height: 230px;
     &:hover{
       transform: scale(1.2);
-      opacity: 0.8;
-      transition: transform 300ms, opacity 300ms;
+      transition: transform 300ms;
+      img{
+        opacity: 0.6;
+        transition: opacity 300ms;
+      }
+      .imgtext{
+        opacity: 1;
+        transition: opacity 300ms;
+      }
+    }
+    img{
+      border-radius: 10px;
+      box-shadow: 5px 5px 10px black;
+    }
+    .imgtext{
+      position: absolute;
+      width:200px;
+      height: 50px;
+      top: 75px;
+      left: 0;
+      font-size: 2rem;
+      text-shadow: 3px 3px 2px $primaryColor;
+      opacity: 0;
     }
   }
 }
