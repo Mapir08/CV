@@ -54,7 +54,7 @@ $(function(){ // Pour les acction au chargement de la page
 
   // Au scoll le menu descend
   $(window).on('scroll', function(event){
-    if(scrollY > 500){
+    if(scrollY > 525){
       $('.navbar').addClass('fixed-top scroll');
     }else{
       $('.navbar').removeClass('fixed-top scroll');
