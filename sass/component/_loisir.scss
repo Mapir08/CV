@@ -7,9 +7,11 @@
     position: relative;
     width: 200px;
     height: 230px;
+    z-index: 0;
     &:hover{
       transform: scale(1.2);
       transition: transform 300ms;
+      z-index: 1;
       img{
         opacity: 0.6;
         transition: opacity 300ms;

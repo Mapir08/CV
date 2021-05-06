@@ -33,6 +33,9 @@
   background-color: $primaryColor;
   box-shadow: inset 0 -5px 5px 0px rgba(0,0,0,0.6);
 }
+.fixed-top{
+  position:sticky;
+}
 
 @media screen and (max-width: 768px){
   .navbar{

@@ -47,20 +47,18 @@ $(function(){ // Pour les acction au chargement de la page
   // Effet déroulement lors du clik navbar
   $('.navbar a').on('click', function(event){
     event.preventDefault();
-    let hash = this.hash;
-    $('html').animate({scrollTop: $(hash).offset().top}, 400, function(){window.location.hash = hash;});
+    let hash = this.hash; //récupére le #... du lien
+    let position = $(hash).offset().top - 85 //défini la position du ScrollY en fonction du #... 
+    $('html').animate({scrollTop: position}, 400); //Va a la position de facon animé
   });
 
   // Au scoll le menu descend
-  let $nav = $('.navbar');
-
   $(window).on('scroll', function(event){
-    if(scrollY > 535){
-      $nav.addClass('fixed-top scroll');
+    if(scrollY > 500){
+      $('.navbar').addClass('fixed-top scroll');
     }else{
-      $nav.removeClass('fixed-top scroll');
+      $('.navbar').removeClass('fixed-top scroll');
     }
-    console.log(scrollY);
   });
 
 });
