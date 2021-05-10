@@ -1,3 +1,63 @@
+<!-- Pour le Formulaire de contact -->
+<?php
+  $nom=$prenom=$email=$telephone=$message=""; // initialisation des variables VIDE pour l'ouverture pour la premiere fois
+  $nomError=$prenomError=$emailError=$messageError=""; // pour validation coté Serveur
+  $isSucces = false;
+  $emailTo = 'math.perlier@gmail.com';
+
+  if ($_SERVER['REQUEST_METHOD']=="POST"){ // Si ouvert via la méthode POST du formulaire
+    $nom=verif($_POST['nom']);
+    $prenom=verif($_POST['prenom']);
+    $email=verif($_POST['email']);
+    $telephone= verif(($_POST['telephone'])) ? $_POST['telephone'] : "";
+    $message=verif($_POST['message']);
+    $isSucces = true;
+    $emailText = ""; // Pour construire le contenu du mail
+
+    if (empty($nom)){
+      $nomError = "Tu n'indiques pas ton Nom.";
+      $isSucces = false; 
+    }else{
+      $emailText .= $nom . " ";
+    }
+    if (empty($prenom)){
+      $prenomError = "Tu n'indiques pas ton Prénom.\r\n";
+      $isSucces = false;
+    }else{
+      $emailText .= $prenom . " a envoyé le message suivant :\r\n\r\n";
+    }
+    if (empty($message)){
+      $messageError = "Message vide";
+      $isSucces = false;
+    }else{
+      $emailText .= $message . "\r\n\r\n";
+    }
+    if (!isEmail($email)){
+      $emailError = "Mail non valide";
+      $isSucces = false;
+    }else{
+      $emailText .= "Son eMail : " . $email . "\r\n";
+      if (!($telephone == '')){
+        $emailText .= "Et son numéro de téléphone : " . $telephone ;
+      }
+    }
+    if ($isSucces) {
+      $headers = "From: $nom $prenom <$email>\r\nReply-To: $email"; // de qui provient le message, a qui répondre
+      mail($emailTo, 'Un message du Site CV', $emailText, $headers); // envoi du mail
+      $nom=$prenom=$email=$telephone=$message=""; // remise à zero des champs pour eviter les confusions
+    }
+  }
+
+  function isEmail($var){
+    return filter_var($var, FILTER_VALIDATE_EMAIL); // Vérifi si c'est bien un mail
+  }
+
+  function verif($var){
+    $var=strip_tags($var); // retire toutes les balises qui auraient pu être entré par malveillance
+    return $var;
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -45,6 +105,7 @@
           <li class="nav-item"><a href="#experience" class="nav-link">Expériences</a></li>
           <li class="nav-item"><a href="#portfolio" class="nav-link">Portfolio</a></li>
           <li class="nav-item"><a href="#loisir" class="nav-link">Loisirs</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link"><span class="bi bi-envelope"></a></li>
         </ul>
       </div>
     </nav>
@@ -235,18 +296,9 @@
 
     <section id="contact" class="container bg">
       <div class="heading">
-        <span class="bi bi-envelope-fill"></span><h2>Contact</h2>
+        <span class="bi bi-envelope-fill"></span><h2>Contactez-moi</h2>
       </div>
-      <form>
-        <div class="row">
-          <div class="col-md-6"><input name="name" id="name" placeholder="Nom" type="text" class="form-control"></div>
-          <div class="col-md-6"><input name="email" id="email" placeholder="Email" type="email" class="form-control "></div>
-        </div>
-        <div class="col-12"><input name="sujet" id="sujet" placeholder="Sujet" type="text" class="form-control"></div>
-        <div class="col-12"><textarea name="message" id="message" placeholder="Message" cols="80" rows="5" class="form-control"></textarea></div>
-        <button type="submit" class="btn btn-light">Envoyer</button>
-        <button type="submit" class="btn btn-light">Réinitialiser</button>
-      </form>
+      <?php include "public/php/contact.php" ?>
     </section>
 
     <footer class="container-fluid bg-end">

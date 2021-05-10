@@ -4,16 +4,45 @@
     padding-left: 30px;
     padding-right: 30px;
     .col-12, .col-md-6{
-      margin-bottom: 20px;
+      span{
+        display: block;
+        width: 100%;
+        text-align: right;
+        color: grey;
+      }
     }
     button{
       margin: 10px 20px 0 20px;
       width: 150px;
       font-family: $secondFont;
       font-size: 1.3rem;
+      color:$secondColor;
+      background-color: $tagColor;
+      letter-spacing: 2px;
+      &:hover{
+        background-color: $secondColor;
+        color:$tagColor;
+      }
+    }
+    .merci{
+      text-align: center;
+      margin-top: 15px;
+      padding-bottom: 0;
+      height:50px;
+      span{
+        font-size: 1.2rem;
+      }
+    }
+    .error{
+      color:red;
+      height: 25px;
+      text-align: left;
     }
   }
 }
-#email:invalid{
-  border-color: #dc3545;
+@media screen and (max-width: 768px){
+  #contact form button{
+    margin-left: 2px;
+    margin-right: 2px;
+  }
 }
