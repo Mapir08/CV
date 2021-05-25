@@ -52,7 +52,7 @@ $(function(){ // Pour les acction au chargement de la page
     $('html').animate({scrollTop: position}, 400); //Va a la position de facon animé
   });
 
-  // Au scoll le menu descend
+  // Au scroll le menu descend
   $(window).on('scroll', function(event){
     if(scrollY > 525){
       $('.navbar').addClass('fixed-top scroll');
@@ -61,5 +61,28 @@ $(function(){ // Pour les acction au chargement de la page
     }
   });
 
+  // POUR LA VALIDATION DU FORMULAIRE DE CONTACT
+  $('#contact-form').submit(function(e){
+    e.preventDefault();                             // Permet d'enlever le comportement par défaut du formulaire
+    $('.error').empty();                            // Initialise les champs .error vide
+    let postdata = $('#contact-form').serialize();  // Initialise une variable pour récupérer les données du formulaire via JSON 
+    $.ajax({
+      type: 'POST',                                 // Le formulaire lance un POST
+      url: 'public/php/contact.php',                // l'adresse du php a executer
+      data: postdata,                               // les donnée seront dans cette variable
+      dataType: 'json',                             // qui sera de type json
+      success: function(result) {                   // Dans le cas ou tous c'est bien passé on execute la fonction
+        if (result.isSuccess){                      // Vérifie si tous les champs ont été bien rempli d'après le retour du fichier PHP
+          $('#merci').append("<span>Votre message est envoyé. Merci de m'avoir contacté.</span>"); // afficher comme quoi le mail est envoyé dans le html
+          $('#contact-form')[0].reset();            // remet tous les champs du formulaire à zero
+        }else{                                      // Si isSucces = false, indiqué d'ou vient l'erreur
+          $('#nom + .error').html(result.nomError); // le message d'erreur pour le nom 
+          $('#prenom + .error').html(result.prenomError);
+          $('#email + .error').html(result.emailError);
+          $('#errorMessage').html(result.messageError);
+        }
+      }
+    });
+  });
 });
 

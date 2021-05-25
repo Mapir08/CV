@@ -1,30 +1,59 @@
-<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-  <div class="row">
-    <div class="col-md-6">
-      <input name="nom" id="nom" placeholder="Nom *" type="text" class="form-control" value="<?php echo $nom; ?>">
-      <div class="error"><?php echo $nomError?></div>
-    </div>
-    <div class="col-md-6">
-      <input name="prenom" id="prenom" placeholder="Prénom *" type="text" class="form-control" value="<?php echo $prenom; ?>">
-      <div class="error"><?php echo $prenomError?></div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <input name="email" id="email" placeholder="Email *" type="email" class="form-control" value="<?php echo $email; ?>">
-      <div class="error"><?php echo $emailError?></div>
-    </div>
-    <div class="col-md-6">
-      <input name="telephone" id="telephone" placeholder="Téléphone" type="tel" class="form-control" value="<?php echo $telephone; ?>">
-      <div class="error"></div>
-    </div>
-  </div>
-  <div class="col-12">
-    <textarea name="message" id="message" placeholder="Message *" cols="80" rows="5" class="form-control"><?php echo $message; ?></textarea>
-  </div>
+<?php
+  // Le fait de créer un array avec toutes les variables utile au formulaire, pour facilité la communication AJAX en JSON
+  $array = array('nom' => '', 'prenom' => '', 'email' => '', 'telephone' => '', 'message' => '', 'nomError' => '', 'prenomError' => '', 'emailError' => '', 'messageError' => '', 'isSuccess' => false);
+  $emailTo = 'math.perlier@gmail.com'; // ne sera pas renvoyé au site donc pas dans le array
 
-  <div class="col-12"><span>* informations requises</span></div>
-  <div class="error" style='text-align:center;'><?php echo $messageError?></div>
-  <button type="submit" class="btn">Envoyer</button>
-  <div class="merci"><span <?php if($isSucces) echo ''; else echo 'hidden'; ?>>Votre message est envoyé. Merci de m'avoir contacté.</span></div>
-</form>
+  if ($_SERVER['REQUEST_METHOD']=="POST"){ // Ouvert via la méthode POST du formulaire
+    $array['nom']=verif($_POST['nom']); // on intègre les données du formulaire dans le array
+    $array['prenom']=verif($_POST['prenom']);
+    $array['email']=verif($_POST['email']);
+    $array['telephone']= verif(($_POST['telephone'])) ? $_POST['telephone'] : "";
+    $array['message']=verif($_POST['message']);
+    $array['isSuccess'] = true;
+    $emailText = ""; // Pour construire le contenu du mail
+
+    if (empty($array['nom'])){
+      $array['nomError'] = "Tu n'indiques pas ton Nom.";
+      $array['isSuccess'] = false; 
+    }else{
+      $emailText .= $array['nom'] . " ";
+    }
+    if (empty($array['prenom'])){
+      $array['prenomError'] = "Tu n'indiques pas ton Prénom.\n";
+      $array['isSuccess'] = false;
+    }else{
+      $emailText .= $array['prenom'] . " a envoyé le message suivant :\n\n";
+    }
+    if (empty($array['message'])){
+      $array['messageError']= "Message vide";
+      $array['isSuccess'] = false;
+    }else{
+      $emailText .= $array['message'] . "\n\n";
+    }
+    if (!isEmail($array['email'])){
+      $array['emailError'] = "Mail non valide";
+      $array['isSuccess'] = false;
+    }else{
+      $emailText .= "Son eMail : " . $array['email'] . "\n";
+      if (!($array['telephone'] == '')){
+        $emailText .= "Et son numéro de téléphone : " . $array['telephone'] ;
+      }
+    }
+    if ($array['isSuccess']) {
+      $headers = "From: {$array['nom']} {$array['prenom']} <{$array['email']}>\r\nReply-To: {$array['email']}"; // de qui provient le message, a qui répondre
+      // ENVOI DU MAL //
+      mail($emailTo, 'Un message du Site CV', $emailText, $headers);
+      // ENVOI DU MAL //
+    }
+    echo json_encode($array); // Après le remplissage du $array avec les valeurs on l'encode pour le reprendre dans le fichier ajax.js qui sera maintenant 'result'
+  }
+
+  function isEmail($var){
+    return filter_var($var, FILTER_VALIDATE_EMAIL); // Vérifi si c'est bien un mail
+  }
+
+  function verif($var){
+    $var=strip_tags($var); // retire toutes les balises qui auraient pu être entré par malveillance
+    return $var;
+  }
+?>
