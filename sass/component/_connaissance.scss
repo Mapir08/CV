@@ -19,7 +19,13 @@
 }
 
 @media screen and (max-width: 1200px) {
-  .knowledge-caption{
-    padding-left: 25px !important;
+  #connaissance{
+    .knowledge-caption{
+      padding-left: 25px !important;
+    }
+    .col-lg-6{
+      padding-right: 0;
+      padding-left: 0;
+    }
   }
 }

@@ -42,3 +42,22 @@
     }
   }
 }
+@media screen and (max-width: 1200px) {
+  #diplome{
+    ul{
+      padding-right: 0;
+      padding-left: 0;
+    }
+    .training-heading{
+      font-size: 1.6rem;
+    }
+    .training-description{
+      font-size: 1.3rem;
+      padding: 0;
+    }
+    .col-10, .col-2, .col-3, .col-9{
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}

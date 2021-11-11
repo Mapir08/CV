@@ -8,3 +8,12 @@ section{
     font-size: 1.8rem;
   }
 }
+@media screen and (max-width: 1200px) {
+  section{
+    padding-right: 10 !important;
+    padding-left: 10 !important;
+    p{
+      font-size:1.6rem;
+    }
+  }
+}

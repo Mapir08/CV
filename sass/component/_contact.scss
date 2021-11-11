@@ -41,8 +41,18 @@
   }
 }
 @media screen and (max-width: 768px){
-  #contact form button{
-    margin-left: 2px;
-    margin-right: 2px;
-  }
+  #contact{
+    form{
+      padding-left: 0;
+      padding-right: 0;
+      button{
+        margin-left: 2px;
+        margin-right: 2px;
+      }
+    }
+    .col-md-6, .col-12{
+      padding-left: 0;
+      padding-right: 0;
+    }
+  } 
 }

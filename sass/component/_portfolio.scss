@@ -20,13 +20,22 @@
 }
 
 @media screen and (max-width: 768px){
-  .bi-chevron-compact-left, .bi-chevron-compact-right{
-    font-size: 2rem !important;
-  }
-  .bi-chevron-compact-left{
-    padding-left: 10px;
-  }
-  .bi-chevron-compact-right{
-    padding-right: 10px;
+  #portfolio{
+    .carousel{
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .carousel-control-prev, .carousel-control-next{
+      display: none;
+    }
+    .bi-chevron-compact-left, .bi-chevron-compact-right{
+      font-size: 2rem !important;
+    }
+    .bi-chevron-compact-left{
+      padding-left: 10px;
+    }
+    .bi-chevron-compact-right{
+      padding-right: 10px;
+    }
   }
 }
